@@ -7,7 +7,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-iluuua-181717?logo=github&logoColor=white)](https://github.com/iluuua)
 
 Студент прикладной математики и информатики (Московский политех, выпуск 2029).
-С 2024 года пишу Python в продакшене, с начала 2026-го веду LLM-слой B2B-продукта.
+С 2022 года пишу Python в продакшене, с начала 2026-го веду LLM-слой B2B-продукта.
 Модели пишу с нуля на PyTorch — финалист AIDAO 2025.
 
 ---
