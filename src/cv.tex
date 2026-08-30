@@ -1,0 +1,133 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- XeLaTeX: fonts + Russian ---
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{PT Sans}
+\setmonofont[Scale=MatchLowercase]{PT Mono}
+\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
+
+% --- layout ---
+\usepackage[a4paper,top=0.75cm,bottom=0.75cm,left=1.3cm,right=1.3cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{rule}{HTML}{333333}
+
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.6pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
+\renewcommand{\labelitemi}{\textbullet}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+\linespread{1.0}
+\tolerance=1500
+\emergencystretch=2.5em
+
+\newcommand{\role}[2]{\textbf{#1}\hfill #2\par}
+
+\begin{document}
+
+% ===== Header =====
+\begin{center}
+  {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
+  {\large ML Engineer (NLP / LLM)}\\[3pt]
+  Москва \textperiodcentered{} офис / гибрид / удалённо \textperiodcentered{} английский C1\\[2pt]
+  Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
+  \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
+  \href{https://github.com/iluuua}{github.com/iluuua}
+\end{center}
+
+% ===== Summary =====
+\section{О себе}
+Студент ПМИ (Московский политех, выпуск 2029). С 2024 года пишу Python в продакшене, с начала 2026-го веду
+LLM-слой B2B-продукта: конвейер из 8 вызовов модели на входящее сообщение, strict JSON-schema output, агент
+с реестром инструментов и MCP, роутинг моделей с фолбэками, трассировка стоимости вызовов. Модели пишу с нуля
+на PyTorch: финалист AIDAO 2025 (ФКН НИУ ВШЭ и Яндекс Образование), occupancy в bird's-eye view по камерам
+беспилотника --- IoU 0.5606 при 0.564 у победителя. Алгоритмическая база --- C++, олимпиадное программирование.
+
+% ===== Skills =====
+\section{Навыки}
+\begin{itemize}
+  \item \textbf{ML / DL:} PyTorch, NumPy, pandas, matplotlib; обучение с нуля и transfer learning, mixed precision,
+        аугментации, подбор лосса под метрику, калибровка порога, дисбаланс классов; ResNet / FPN, сегментация, IoU
+  \item \textbf{NLP / LLM:} LLM-пайплайны в проде, prompt engineering, strict JSON-schema output, классификация и
+        extraction, RAG, эмбеддинги + pgvector, LLM-агенты и tool calling, MCP, роутинг моделей и fallback,
+        оценка cost / latency
+  \item \textbf{Инженерия:} Python, FastAPI, asyncio, PostgreSQL / SQL, Redis, Docker, CI/CD, Linux, Git, pytest
+  \item \textbf{Математика и алгоритмы:} теория вероятностей, матстатистика, линейная алгебра, методы оптимизации;
+        C++, алгоритмы и структуры данных, оценка сложности
+\end{itemize}
+
+% ===== Experience =====
+\section{Опыт работы}
+
+\role{ReachFlow --- ML/NLP \& Backend Engineer}{Янв 2026 --- наст. время}
+\textit{B2B SaaS: ИИ-ассистент, который ведёт продающие переписки в Telegram \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
+\begin{itemize}
+  \item Построил \textbf{LLM-конвейер диалога} --- 8 вызовов модели на входящее сообщение: гейт батча,
+        классификатор состояния лида (16 типов событий с якорем на сообщение и confidence), извлечение и взвешивание
+        фактов (18 типизированных ключей), стратег\,$\rightarrow$\,гуманизатор\,$\rightarrow$\,ревьюер, планировщик отправки.
+  \item \textbf{Снизил стоимость хода}: слил пять классификаторных вызовов в два --- одна модель отдаёт несколько
+        секций одним объектом; 10 вызовов на сообщение стало 8, входных символов на стадии классификации на
+        14--43\% меньше, при этом каждая секция сохранила собственный режим отказа.
+  \item Сделал \textbf{strict structured output}: реестр из 25 LLM-задач и 22 JSON-схем на pydantic, нормализация
+        схем под strict-режим и валидация ответа на своей стороне (нарушение схемы --- retryable); исполнитель с
+        ретраями, каскадом фолбэков между вендорами и трейсом каждой попытки (модель, latency, retry, стоимость).
+  \item Собрал \textbf{ИИ-агента с инструментами}: реестр \texttt{ToolSpec} --- единственный источник правды для блока
+        инструментов в промпте, гейта привилегий по риску, границы доверия и MCP-эндпоинта; оркестратор с бюджетом вызовов.
+  \item Разобрал провал \textbf{семантического гейта}: косинусная близость на эмбеддингах (text-embedding-3-small,
+        pgvector / HNSW) отбраковывала 55 кандидатов из 63, потому что мерила формат и длину текста, а не
+        релевантность --- перевёл гейт из блокирующего в наблюдательный.
+\end{itemize}
+\vspace{3pt}
+
+\role{Freelance Python Developer}{Июль 2024 --- наст. время}
+\begin{itemize}
+  \item Telegram-бот-консультант для дистрибьютора пластиковых окон: \textbf{RAG} на PostgreSQL с векторным поиском
+        по базе знаний, интеграция с CRM Bitrix24; по оценке заказчика закрыл ${\sim}80\%$ типовых консультаций.
+\end{itemize}
+\vspace{3pt}
+
+\role{Near AI --- разработчик решений на C++}{Июнь 2023 --- Июль 2024}
+\begin{itemize}
+  \item Алгоритмические решения на C++ как обучающие данные для AI-платформы: оптимизация по времени и памяти,
+        разбор асимптотики, code review в международной команде.
+\end{itemize}
+
+% ===== ML projects =====
+\section{ML-проекты и соревнования}
+
+\role{AIDAO 2025 --- Международная олимпиада по ИИ и анализу данных (ФКН НИУ ВШЭ, Яндекс Образование)}{Ноя 2025}
+\textit{Финал: топ-30 команд из 248 из 14 стран, 32 часа очно. Задача команды беспилотных технологий Яндекса ---
+occupancy-карта в bird's-eye view по камерам автомобиля, метрика IoU. PyTorch, решение с нуля.}
+\begin{itemize}
+  \item Реализовал \textbf{Lift--Splat--Shoot}: общий для камер ResNet-50 с FPN-слиянием уровней /8 и /16,
+        depth-head на 64 бина глубины с обучаемой температурой softmax, дифференцируемый splat признаков в
+        BEV-сетку 188$\times$126, фьюжн камер max\,+\,mean с SE-блоком, декодер на dilated residual-блоках.
+  \item Основной прирост дала \textbf{покадровая калибровка} вместо фиксированной: геометрия проекции пересчитывается
+        на каждом кадре из \textit{intrinsics} и \textit{car\_to\_cam}, с переносом сетки пикселей в координаты
+        исходного изображения.
+  \item Лосс --- BCE с \texttt{pos\_weight} по балансу классов $+\ 0.3\times$ дифференцируемый surrogate mIoU:
+        оптимизировал ровно ту метрику, по которой считался скор. AdamW с раздельными lr для backbone и голов,
+        cosine annealing, AMP, калибровка порога свипом по валидации.
+  \item Итог --- \textbf{IoU 0.5606} на скрытом тесте (у команды-победителя олимпиады 0.564); инференс 2000 кадров
+        за 1{,}7 мин на одной GPU.
+\end{itemize}
+
+% ===== Education =====
+\section{Образование и курсы}
+\textbf{Московский политехнический университет} --- прикладная математика и информатика, выпуск 2029
+\textperiodcentered{} \textbf{НИУ ВШЭ, ФКН} --- вольнослушатель курсов ПМИ
+\textperiodcentered{} \textbf{Deep Learning School} (ФПМИ МФТИ), 2025
+\textperiodcentered{} \textbf{ОЦ <<Сириус>>} --- Январская научная школа по математике и программированию, 92 ак. ч., 2025
+\textperiodcentered{} \textbf{Т-Поколение} (Т-Банк) --- <<Алгоритмы>>, параллель B, 2025
+
+\end{document}
