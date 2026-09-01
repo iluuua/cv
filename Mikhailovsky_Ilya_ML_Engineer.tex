@@ -1,0 +1,137 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- XeLaTeX: fonts + Russian ---
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{PT Sans}
+\setmonofont[Scale=MatchLowercase]{PT Mono}
+\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
+
+% --- layout ---
+\usepackage[a4paper,top=0.6cm,bottom=0.55cm,left=1.3cm,right=1.3cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{rule}{HTML}{333333}
+
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{4.5pt}{2.5pt}
+
+\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.4pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
+\renewcommand{\labelitemi}{\textbullet}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+\linespread{0.96}
+\tolerance=1500
+\emergencystretch=2.5em
+
+\newcommand{\role}[2]{\textbf{#1}\hfill #2\par}
+
+\begin{document}
+
+% ===== Header =====
+\begin{center}
+  {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
+  {\large ML-инженер, NLP и LLM}\\[3pt]
+  Москва \textperiodcentered{} офис, гибрид или удалённо \textperiodcentered{} английский C1\\[2pt]
+  Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
+  \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
+  \href{https://github.com/iluuua}{github.com/iluuua}
+\end{center}
+
+% ===== Summary =====
+\section{О себе}
+Учусь на прикладной математике и информатике в Московском политехе, выпускаюсь в 2029 году. Python в продакшене
+пишу с 2024 года, а с января 2026 веду LLM-слой B2B-продукта, где на каждое входящее сообщение работает конвейер
+из восьми вызовов модели со строгим JSON-schema выводом, агентом и роутером моделей. Сами модели пишу с нуля
+на PyTorch. В финале AIDAO 2025 собирал occupancy-карту в bird's-eye view по камерам беспилотника и получил
+IoU 0.5606 при 0.564 у победителя олимпиады. Алгоритмическая база олимпиадная, на C++.
+
+% ===== Skills =====
+\section{Навыки}
+\begin{itemize}
+  \item \textbf{ML и DL.} PyTorch, NumPy, pandas, matplotlib. Обучение с нуля и transfer learning, mixed precision,
+        аугментации, подбор лосса под метрику, калибровка порога, дисбаланс классов, ResNet и FPN, сегментация, IoU
+  \item \textbf{NLP и LLM.} LLM-пайплайны в проде, prompt engineering, строгий JSON-schema output, классификация
+        и extraction, RAG, эмбеддинги и pgvector, агенты и tool calling, MCP, роутинг моделей с фолбэками,
+        оценка стоимости и латентности
+  \item \textbf{Инженерия.} Python, FastAPI, asyncio, PostgreSQL и SQL, Redis, Docker, CI/CD, Linux, Git, pytest
+  \item \textbf{Математика и алгоритмы.} Теория вероятностей, матстатистика, линейная алгебра, методы оптимизации,
+        C++, алгоритмы и структуры данных, оценка сложности
+\end{itemize}
+
+% ===== Experience =====
+\section{Опыт работы}
+
+\role{ReachFlow, ML/NLP и backend инженер}{с января 2026}
+\textit{B2B SaaS, ИИ-ассистент, который ведёт продающие переписки в Telegram \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
+\begin{itemize}
+  \item Собрал \textbf{конвейер диалога}, где на каждое входящее сообщение уходит восемь вызовов модели.
+        Классификатор размечает состояние лида по 16 типам событий с якорем на сообщение и confidence, факты
+        извлекаются по 18 типизированным ключам, а ответ пишет стратег, переписывает гуманизатор и проверяет ревьюер.
+  \item \textbf{Удешевил ход.} Пять классификаторных вызовов слил в два, потому что одна модель умеет отдать
+        несколько секций одним объектом. Вызовов на сообщение стало восемь вместо десяти, а входных символов
+        на стадии классификации ушло меньше, от 14 до 43 процентов в зависимости от задачи. Каждая секция
+        при этом сохранила свой режим отказа.
+  \item Сделал \textbf{строгий структурированный вывод}. В реестре 25 LLM-задач и 22 схемы на pydantic, схемы
+        нормализуются под strict-режим вендоров, а ответ проверяется у меня, и его нарушение считается повторяемой ошибкой.
+        Исполнитель умеет ретраи и каскад фолбэков между вендорами, каждая попытка попадает в трейс с моделью,
+        латентностью и стоимостью.
+  \item Собрал \textbf{ИИ-агента с инструментами}. Реестр \texttt{ToolSpec} остаётся единственным источником правды
+        сразу для блока инструментов в промпте, гейта привилегий по риску, границы доверия и MCP-эндпоинта.
+        У оркестратора есть бюджет вызовов.
+  \item Разобрал провал \textbf{семантического гейта}. Косинусная близость на эмбеддингах text-embedding-3-small
+        в pgvector с HNSW отбраковывала 55 кандидатов из 63, потому что мерила формат и длину текста вместо
+        релевантности. Я перевёл гейт из блокирующего в наблюдательный и оставил решение за LLM-квалификацией.
+\end{itemize}
+\vspace{2pt}
+
+\role{Фриланс, Python-разработчик}{с июля 2024}
+\begin{itemize}
+  \item Телеграм-бот-консультант для дистрибьютора пластиковых окон. Внутри \textbf{RAG} на PostgreSQL с векторным
+        поиском по базе знаний и интеграция с Битрикс24. По оценке заказчика бот закрыл около 80\% типовых консультаций.
+\end{itemize}
+\vspace{2pt}
+
+\role{Near AI, разработчик решений на C++}{с июня 2023 по июль 2024}
+\begin{itemize}
+  \item Готовил алгоритмические решения на C++ как обучающие данные для AI-платформы. Оптимизировал по времени
+        и памяти, разбирал асимптотику, ревьюил чужой код в международной команде.
+\end{itemize}
+
+% ===== ML projects =====
+\section{ML-проекты и соревнования}
+
+\role{AIDAO 2025, международная олимпиада по ИИ и анализу данных (ФКН НИУ ВШЭ, Яндекс Образование)}{ноябрь 2025}
+\textit{Финал очно, 32 часа, топ-30 команд из 248 заявок от участников из 14 стран. Задачу ставила команда
+беспилотных технологий Яндекса, нужно было построить occupancy-карту в bird's-eye view по камерам автомобиля
+со скором по IoU. Решение на PyTorch с нуля.}
+\begin{itemize}
+  \item Реализовал \textbf{Lift-Splat-Shoot}. Общий для камер ResNet-50 сливает уровни /8 и /16 через FPN,
+        depth-head раскладывает глубину на 64 бина с обучаемой температурой softmax, признаки дифференцируемо
+        разлетаются в BEV-сетку 188$\times$126. Камеры сливаются через max и mean с SE-блоком, декодер на dilated
+        residual-блоках.
+  \item Главный прирост дала \textbf{покадровая калибровка} вместо фиксированной. Геометрия проекции пересчитывается
+        на каждом кадре из \textit{intrinsics} и \textit{car\_to\_cam}, а сетка пикселей переносится в координаты
+        исходного изображения, потому что у четырёх камер разные разрешения.
+  \item Лосс собрал из BCE с \texttt{pos\_weight} по балансу классов и $0.3\times$ дифференцируемого surrogate mIoU,
+        то есть оптимизировал ровно ту метрику, по которой считался скор. Учил AdamW с раздельными lr для backbone
+        и голов, с cosine annealing и AMP, порог калибровал свипом по валидации.
+  \item На скрытом тесте вышло \textbf{IoU 0.5606}, у команды-победителя олимпиады 0.564. Инференс 2000 кадров
+        занимает 1,7 минуты на одной GPU.
+\end{itemize}
+
+% ===== Education =====
+\section{Образование и курсы}
+\textbf{Московский политехнический университет}, прикладная математика и информатика, выпуск 2029.
+\textbf{НИУ ВШЭ, ФКН}, вольнослушатель ПМИ. В 2025 году прошёл \textbf{Deep Learning School} ФПМИ МФТИ,
+Январскую научную школу \textbf{ОЦ <<Сириус>>} на 92 академических часа и годовой курс \textbf{Т-Поколения}
+<<Алгоритмы>>, параллель B.
+
+\end{document}
