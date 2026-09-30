@@ -10,7 +10,7 @@
 \newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
 
 % --- layout ---
-\usepackage[a4paper,top=1.0cm,bottom=1.0cm,left=1.5cm,right=1.5cm]{geometry}
+\usepackage[a4paper,top=0.7cm,bottom=0.7cm,left=1.3cm,right=1.3cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
@@ -20,16 +20,16 @@
 
 % section headers: bold, small rule under
 \titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\section}{0pt}{4pt}{2.2pt}
 
 % tight bullet lists
-\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.6pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
+\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.2pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
 \renewcommand{\labelitemi}{\textbullet}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \pagestyle{empty}
-\linespread{1.0}
+\linespread{0.96}
 \tolerance=1500
 \emergencystretch=2.5em
 
@@ -42,7 +42,7 @@
 \begin{center}
   {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
   {\large Python Backend Developer}\\[3pt]
-  Москва \textperiodcentered{} удалённо или гибрид\\[2pt]
+  Москва \textperiodcentered{} удалённо или гибрид \textperiodcentered{} английский C1, русский родной\\[2pt]
   Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
   \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
   \href{https://github.com/iluuua}{github.com/iluuua} \textperiodcentered{}
@@ -51,88 +51,92 @@
 
 % ===== Summary =====
 \section{О себе}
-Пишу бэкенд на Python. Бэкенд B2B SaaS-продукта ReachFlow спроектировал с нуля и довёл до продакшена. Он собран
-на FastAPI поверх asyncpg и PostgreSQL, с фоновыми воркерами на Redis и Dramatiq и асинхронными
-интеграциями с Telegram по MTProto и с языковыми моделями. Занимаюсь научной работой, написал статью
-по молекулярно-динамическому моделированию алюминиевой матрицы с включением Fe$_4$Al$_{13}$,
-репозиторий \texttt{physics\_md\_al\_fe}.
-Алгоритмическая база олимпиадная, на C++.
+Разрабатываю backend на Python. Основал ReachFlow, спроектировал его серверную часть и довёл
+до продакшена. Работаю с FastAPI, asyncpg, PostgreSQL, фоновыми процессами и асинхронными
+интеграциями с Telegram и языковыми моделями. Сопровождаю развёртывание на Linux VPS.
+Алгоритмическая подготовка: олимпиадные задачи на C++.
 
-% ===== Skills =====
 \section{Навыки}
 \begin{itemize}
-  \item \textbf{Бэкенд.} Python, FastAPI, Pydantic, asyncio, REST API, JWT, OAuth
-  \item \textbf{Данные.} PostgreSQL, SQL, asyncpg, pgvector, Redis
-  \item \textbf{Очереди и воркеры.} Dramatiq, фоновые задачи, отложенные и запланированные действия
-  \item \textbf{Инфраструктура.} Docker, Docker Compose, nginx, Kubernetes, CI/CD, Linux
-  \item \textbf{Качество и наблюдаемость.} pytest, unittest, ruff, health-чеки, структурные логи, request-id
-        и trace-id, OpenTelemetry
-  \item \textbf{Интеграции.} Telegram API, MTProto, Telethon, Google OAuth, LLM через OpenRouter
-  \item \textbf{Алгоритмы.} C++, алгоритмы и структуры данных
+  \item Backend: Python, FastAPI, Pydantic, asyncio, REST API, JWT, OAuth
+  \item Данные: PostgreSQL, SQL, asyncpg, pgvector, Redis
+  \item Очереди и фоновые задачи: PostgreSQL, Redis и Dramatiq, отложенные действия и восстановление после сбоя
+  \item Инфраструктура: Linux, Docker, Docker Compose, Caddy, nginx, systemd, GitHub Actions;
+        базовое знакомство с Kubernetes (Deployment, CronJob, Secret)
+  \item Качество и наблюдаемость: pytest, unittest, Ruff, проверки здоровья сервисов,
+        структурированные логи, request-id и trace-id, OpenTelemetry
+  \item Интеграции: Telegram API, MTProto, Telethon, Google OAuth, LLM через OpenRouter
+  \item Алгоритмы: C++, алгоритмы и структуры данных
 \end{itemize}
 
-% ===== Experience =====
 \section{Опыт работы}
-
-\role{ReachFlow, Python backend и product engineer}{с января 2026}
+\role{ReachFlow, Founder}{январь 2026 - настоящее время}
 \textit{B2B SaaS для автоматизации продаж в Telegram \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
-
-\textbf{Бэкенд и данные.} Спроектировал и написал многотенантный бэкенд на FastAPI и asyncpg: 14 доменных
-роутеров, вход по JWT и Google OAuth с проверкой подписи по JWKS, изоляция воркспейсов запросами
-и RLS-политиками Postgres. В схеме 8 доменных схем, 69 таблиц, 168 индексов и 33 forward-миграции,
-плюс bootstrap базы и smoke-проверки схемы.
-
-\textbf{Фон и Telegram.} Фоновая обработка на Redis и Dramatiq: отдельные акторы на диалог и планировщик,
-батчинг входящих, отложенные follow-up, восстановление очередей после сбоя. Telegram подключён по MTProto через
-Telethon: login-flow, хранение и восстановление session string, MTProxy и SOCKS, свои лимиты отправки
-и обработка flood-ограничений.
-
-\textbf{Слой LLM.} Оркестрация поверх OpenRouter: 25 задач в реестре, 22 схемы на pydantic с валидацией
-на импорте модуля, 19 профилей моделей поверх семи env-слотов и каскад фолбэков, дедуплицированный
-по разрешённой модели и роутингу провайдера. На входящее сообщение уходит шесть-семь вызовов, каждая попытка
-пишется в трейс с моделью, латентностью и стоимостью.
-
-\textbf{Свой рендерер страниц.} Вынес чтение сайтов в отдельный сервис на FastAPI, Playwright и Chromium,
-потому что пик рендера тяжёлой страницы доходил до 413 мегабайт при лимите в гигабайт. Защита от SSRF стоит
-дважды и независимо, в бэкенде и в рендерере, потому что доверять чужой проверке в одной сети с базой нельзя:
-свой резолв DNS, публичность всех адресов хоста, проверка каждого редирект-хопа, порты только 80 и 443.
-
-\textbf{Продакшен.} Docker и Docker Compose, nginx обратным прокси с тем же origin для \texttt{/api}, health-чеки
-трёх уровней вплоть до валидации схемы БД, структурные логи с request-id и trace-id по OpenTelemetry, CI
-на GitHub Actions с тестами и ruff, 86 тестовых модулей. Деплой на Amvera с managed PostgreSQL, для воркеров
-написаны Kubernetes-манифесты.
-
-\vspace{3pt}
-
-\role{Фриланс, Python-разработчик}{с июля 2024}
+Основатель продукта; отвечаю за backend, интеграции и эксплуатацию.
 \begin{itemize}
-  \item Телеграм-бот для дистрибьютора пластиковых окон. Асинхронный бот на Aiogram, интеграция с Битрикс24
-        по REST API, PostgreSQL с векторным поиском для авто-консультаций, уведомления о смене статуса заказа.
-        По оценке заказчика бот автоматизировал около 80\% типовых консультаций.
-  \item Телеграм-бот для школы (\texttt{@shkolo\_teacher\_bot}). Внутри три роли, ученик, учитель и админ,
-        автоматизация расписания, новостей и отчётности, деплой в Docker.
+  \item Спроектировал backend на FastAPI и asyncpg с изоляцией рабочих пространств,
+        RLS-политиками PostgreSQL, JWT и Google OAuth. Подпись токенов проверяется по JWKS.
+        Реализовал инициализацию базы, миграции и проверки схемы.
+  \item Разработал фоновую обработку диалогов: группировку входящих сообщений, отложенные
+        follow-up и восстановление задач после сбоя. Работал с Redis и Dramatiq;
+        текущие API, шлюз и workers используют отдельные роли и очереди PostgreSQL.
+        Интеграция с Telegram через Telethon включает вход по MTProto, хранение и восстановление
+        сессий, MTProxy и SOCKS, лимиты отправки и обработку FloodWait.
+  \item Разработал выполнение LLM-задач через OpenRouter: реестр 25 задач и 22 схем Pydantic
+        с проверкой при импорте, профили моделей и резервные провайдеры без повторных попыток
+        с одной и той же комбинацией модели и маршрута. Каждая попытка записывается
+        с моделью, временем выполнения и стоимостью.
+  \item Вынес чтение сайтов в сервис на FastAPI, Playwright и Chromium после замера пика памяти
+        в 413 МБ при лимите 1 ГБ. Backend и рендерер независимо защищены от SSRF:
+        проверяют DNS, публичность всех адресов и каждый редирект; разрешены порты 80 и 443.
+  \item Настроил Docker Compose, Caddy/nginx, GitHub Actions с тестами и Ruff,
+        проверки здоровья до уровня схемы базы, структурированные логи и OpenTelemetry.
+        Работал с развёртыванием на Amvera и Linux VPS; для workers подготовлены примеры
+        Kubernetes-манифестов.
+  \item Сопровождаю автоматический деплой через GitHub webhooks и systemd.
+        До миграций выполняются резервное копирование и восстановление на тестовой базе;
+        после релиза проверяются версия образа и здоровье сервисов, при сбое предусмотрен откат.
 \end{itemize}
 \vspace{3pt}
 
-\role{Near AI, разработчик решений на C++}{с июня 2023 по июль 2024}
+\role{Delnovo, Chief Technology Officer}{июль 2023 - май 2026}
 \begin{itemize}
-  \item Решал олимпиадные алгоритмические задачи на C++ для обучения децентрализованного ИИ. Оптимизировал
-        по времени и памяти, оценивал асимптотику, рефакторил.
-  \item Оформлял решения в LaTeX и ревьюил код других участников, команда была международная.
+  \item Разрабатывал коммерческих ботов для поддержки и продаж. Для дистрибьютора пластиковых окон
+        реализовал асинхронного бота на Aiogram, интеграцию с Битрикс24 по REST API,
+        RAG на PostgreSQL и уведомления о статусе заказа. По оценке заказчика бот автоматизировал
+        около 80\% типовых консультаций.
+  \item Разработал Telegram-бота для школы (\texttt{@shkolo\_teacher\_bot}): роли ученика,
+        учителя и администратора, расписание, новости и отчётность. Настроил запуск в Docker.
+\end{itemize}
+\vspace{3pt}
+
+\role{NEAR AI, Solutions Engineer}{июнь 2023 - июль 2024}
+\begin{itemize}
+  \item Решал алгоритмические задачи на C++ для обучения децентрализованного ИИ:
+        оптимизировал время и память, оценивал асимптотику и улучшал структуру кода.
+  \item Оформлял решения в LaTeX и проверял код участников международной команды.
 \end{itemize}
 
-% ===== Education =====
+\section{Проекты}
+\role{Лидеры цифровой трансформации 2026, задача №5}{2026}
+Капитан команды xixi-square. Разработал алгоритм обнаружения препятствий по облакам точек
+3D-лидара Pandar128 и интеграцию с ROS 2 Humble. Отдельный процесс обрабатывает последний
+кадр и пропускает устаревшие при перегрузке. Решение упаковано в Docker.
+На синтетике организаторов найдены все 8 препятствий; на проверенных 15,7 км реальных записей
+ложных тревог не было.
+
+\vspace{3pt}
+\textbf{Научная работа.} Написал статью по молекулярно-динамическому моделированию алюминиевой
+матрицы с включением Fe$_4$Al$_{13}$. Код и материалы:
+\href{https://github.com/iluuua/physics_md_al_fe}{physics\_md\_al\_fe}.
+
 \section{Образование}
-\textbf{Московский политехнический университет}, транспортный факультет, образовательная программа
-<<Прикладная математика и информатика>>, выпуск 2029. \textbf{НИУ ВШЭ}, факультет компьютерных наук,
-вольнослушатель курсов программы <<Прикладная математика и информатика>>.
-\textbf{Образовательный центр <<Сириус>>}, профильный модуль программы <<Январская научная школа по математике
-и программированию>>, 92 академических часа, январь 2025. \textbf{Deep Learning School} ФПМИ МФТИ, 2025.
-\textbf{Т-Образование}, программа <<Т-Поколение>>, курс <<Алгоритмы>>, параллель B, 2025.
+\textbf{Московский политехнический университет}, транспортный факультет, программа
+<<Прикладная математика и информатика>>, выпуск 2029. \textbf{НИУ ВШЭ, ФКН},
+вольнослушатель курсов той же программы.
+\textbf{ОЦ <<Сириус>>}, <<Январская научная школа по математике и программированию>>,
+92 академических часа, январь 2025. \textbf{Deep Learning School} ФПМИ МФТИ, 2025.
+\textbf{Т-Образование}, <<Т-Поколение>>, курс <<Алгоритмы>>, параллель B, 2025.
 
-% ===== Additional =====
-\section{Дополнительно}
-GitHub \href{https://github.com/iluuua}{github.com/iluuua} \textperiodcentered{} английский C1
-\textperiodcentered{} русский родной
 
 \end{document}

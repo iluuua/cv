@@ -1,0 +1,102 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{PT Sans}
+\setmonofont[Scale=MatchLowercase]{PT Mono}
+\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
+
+\usepackage[a4paper,top=1.0cm,bottom=1.0cm,left=1.3cm,right=1.3cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{rule}{HTML}{333333}
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\setlist[itemize]{leftmargin=1.15em,labelsep=0.5em,itemsep=1.5pt,topsep=2pt,parsep=0pt}
+\renewcommand{\labelitemi}{\textbullet}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+\linespread{1.02}
+\tolerance=1500
+\emergencystretch=2.5em
+\newcommand{\role}[2]{\textbf{#1}\hfill #2\par}
+
+\begin{document}
+\begin{center}
+  {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
+  {\large DevOps / Platform Engineer}\\[3pt]
+  Москва \textperiodcentered{} офис, гибрид или удалённо \textperiodcentered{} английский C1\\[2pt]
+  Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
+  \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
+  \href{https://github.com/iluuua}{github.com/iluuua}
+\end{center}
+
+\section{О себе}
+Разрабатываю backend и сопровождаю сервисы на Linux VPS. Автоматизирую сборку, развёртывание
+и проверку релизов, пишу инструменты на Python и Bash. Основал ReachFlow; работаю с
+контейнерами, базами данных и сетевой диагностикой. Учусь в Московском политехе, выпуск в 2029 году.
+
+\section{Навыки}
+\begin{itemize}
+  \item Linux и сети: Ubuntu, SSH, systemd, диагностика процессов и соединений;
+        TCP/IP, DNS, TLS, HTTP/2, reverse proxy, CDN, Caddy, nginx
+  \item Сборка и эксплуатация: Docker, Docker Compose, Git, GitHub Actions,
+        Bash, health checks, структурированные логи, резервное копирование и откат
+  \item Разработка и данные: Python, FastAPI, asyncio, pytest, Ruff, PostgreSQL, SQL, Redis
+  \item Kubernetes: базовое знакомство с манифестами Deployment, CronJob и Secret
+\end{itemize}
+
+\section{Опыт работы}
+\role{ReachFlow, Founder}{январь 2026 - настоящее время}
+\textit{B2B SaaS \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
+Основатель продукта; отвечаю за backend, инфраструктуру и выпуск изменений.
+\begin{itemize}
+  \item Настроил развёртывание API, шлюза, фоновых процессов и PostgreSQL через Docker Compose
+        на Linux VPS. Использую Caddy/nginx для маршрутизации запросов и TLS.
+  \item Настроил тесты и проверку Python-кода в GitHub Actions, деплой через webhooks и systemd.
+        Устранил потерю событий при одновременных пушах: ожидание блокировки и таймер сверки версий.
+  \item До миграций выполняю дамп PostgreSQL, проверку целостности и репетицию восстановления
+        на отдельной базе. После релиза проверяю SHA образов и здоровье сервисов; предусмотрен откат.
+  \item Разбирал зависание webhook receiver, ошибки доступа Docker в systemd и сбои reverse proxy.
+        Использую журнал сервисов, проверки здоровья и структурированные логи.
+\end{itemize}
+\vspace{2pt}
+
+\role{Delnovo, Chief Technology Officer}{июль 2023 - май 2026}
+\begin{itemize}
+  \item Разрабатывал ботов для поддержки и продаж: Python, PostgreSQL, интеграции с Битрикс24,
+        запуск в Docker. По оценке заказчика бот-консультант автоматизировал около 80\%
+        типовых консультаций.
+\end{itemize}
+\vspace{2pt}
+
+\role{NEAR AI, Solutions Engineer}{июнь 2023 - июль 2024}
+\begin{itemize}
+  \item Решал алгоритмические задачи на C++ для обучения децентрализованного ИИ,
+        оптимизировал время и память, проверял код участников международной команды.
+\end{itemize}
+
+\section{Проекты}
+\role{ReachVPS, инфраструктура сервисов}{2026}
+Работал с FastAPI, PostgreSQL, Redis, фоновым scheduler и Caddy в Docker Compose.
+Проверял DNS, TLS, HTTP/2, целостность POST-запросов и потоковую передачу через Selectel CDN.
+
+\vspace{3pt}
+\role{Лидеры цифровой трансформации 2026, задача №5}{2026}
+Капитан команды xixi-square. Разработал алгоритм обнаружения препятствий по данным 3D-лидара
+и интеграцию с ROS 2 Humble. Решение запускается в Docker; отдельный процесс обрабатывает
+последний кадр и пропускает устаревшие при перегрузке. На синтетике организаторов
+найдены все 8 препятствий.
+
+\section{Образование}
+\textbf{Московский политехнический университет}, <<Прикладная математика и информатика>>,
+выпуск 2029. \textbf{НИУ ВШЭ, ФКН}, вольнослушатель курсов той же программы.
+\textbf{Т-Образование}, <<Т-Поколение>>, курс <<Алгоритмы>>, параллель B, 2025.
+\textbf{Deep Learning School} ФПМИ МФТИ, 2025.
+
+\end{document}
