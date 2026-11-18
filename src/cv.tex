@@ -1,151 +1,92 @@
 \documentclass[10pt,a4paper]{article}
 
-% --- XeLaTeX: fonts + Russian ---
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
-\setmainfont{PT Sans}
-\setmonofont[Scale=MatchLowercase]{PT Mono}
-\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
-
-% --- layout ---
-\usepackage[a4paper,top=0.6cm,bottom=0.6cm,left=1.3cm,right=1.3cm]{geometry}
+\IfFontExistsTF{STIXTwoText-Regular.otf}{
+  \setmainfont{STIXTwoText}[
+    Extension=.otf,
+    UprightFont=*-Regular, ItalicFont=*-Italic,
+    BoldFont=*-Bold, BoldItalicFont=*-BoldItalic
+  ]
+}{\setmainfont{PT Sans}}
+\usepackage[a4paper,top=1.15cm,bottom=1.15cm,left=1.65cm,right=1.65cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={Илья Михайловский},pdftitle={Илья Михайловский | ML-инженер, NLP и LLM},pdflang=ru-RU}
+\urlstyle{same}
 
-\definecolor{rule}{HTML}{333333}
-
-\titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{4pt}{2.2pt}
-
-\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.2pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
+\titleformat{\section}{\fontsize{11.7}{13.5}\selectfont}{}{0pt}{\MakeUppercase}[\vspace{0.6pt}{\titlerule[0.45pt]}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\setlist[itemize]{leftmargin=1.65em,labelsep=0.55em,itemsep=1.2pt,topsep=1pt,parsep=0pt,partopsep=0pt}
 \renewcommand{\labelitemi}{\textbullet}
-
+\newcommand{\role}[2]{\textbf{#1}\hfill{\small #2}\par}
+\newcommand{\sep}{\enspace\textbar\enspace}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \pagestyle{empty}
-\linespread{0.90}
-\tolerance=1500
-\emergencystretch=2.5em
-
-\newcommand{\role}[2]{\textbf{#1}\hfill #2\par}
+\raggedright
 
 \begin{document}
+\fontsize{10.3}{12.2}\selectfont
+{\centering
+  {\fontsize{23}{26}\selectfont\bfseries Илья Михайловский}\par
+  \vspace{1.5pt}
+  {\large ML-инженер, NLP и LLM}\par
+  \vspace{2pt}
+  Москва\sep офис, гибрид или удалённо\sep английский C1\par
+  \href{mailto:ilyamihailovsy@gmail.com}{\underline{ilyamihailovsy@gmail.com}}\sep
+  \href{https://t.me/Iluuuaaa}{\underline{Telegram @Iluuuaaa}}\sep
+  \href{https://github.com/iluuua}{\underline{github.com/iluuua}}\par
+}
 
-% ===== Header =====
-\begin{center}
-  {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
-  {\large ML-инженер, NLP и LLM}\\[3pt]
-  Москва \textperiodcentered{} офис, гибрид или удалённо \textperiodcentered{} английский C1\\[2pt]
-  Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
-  \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
-  \href{https://github.com/iluuua}{github.com/iluuua}
-\end{center}
-
-% ===== Summary =====
-\section{О себе}
-Учусь на программе <<Прикладная математика и информатика>> в Московском политехе, выпуск в 2029 году.
-С 2024 года пишу Python для работающих сервисов. Основал ReachFlow и разрабатываю его backend,
-ИИ-агентов и обработку диалогов. Обучал модели с нуля на PyTorch. Финалист AIDAO 2025.
-
-% ===== Skills =====
-\section{Навыки}
-\begin{itemize}
-  \item ML и DL: PyTorch, NumPy, pandas, matplotlib; обучение с нуля и transfer learning, mixed precision,
-        аугментации, подбор лосса под метрику, калибровка порога, дисбаланс классов, ResNet и FPN, сегментация, IoU
-  \item NLP и LLM: обработка диалогов, prompt engineering, ответы по JSON Schema, классификация
-        и извлечение фактов, RAG, эмбеддинги и pgvector, агенты и tool calling, MCP, выбор моделей и резервных провайдеров,
-        оценка стоимости и латентности
-  \item Инженерия: Python, FastAPI, asyncio, PostgreSQL и SQL, Redis, Docker, CI/CD, Linux, Git, pytest
-  \item Математика и алгоритмы: теория вероятностей, матстатистика, линейная алгебра, методы оптимизации,
-        C++, алгоритмы и структуры данных, оценка сложности
-\end{itemize}
-
-% ===== Experience =====
 \section{Опыт работы}
-
-\role{ReachFlow, Founder}{январь 2026 - настоящее время}
-\textit{B2B SaaS для работы с обращениями и диалогами в Telegram \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
+\role{ReachFlow\normalfont\enspace\textit{Основатель и разработчик}\enspace\href{https://reachflow.tech}{\underline{reachflow.tech}}}{с января 2026}
+Сервис для отделов продаж, которые ведут переписку в Telegram.
 \begin{itemize}
-  \item Разработал обработку диалога: проверка готовности ответа, классификация по 16 типам событий,
-        извлечение и оценка фактов по 18 ключам, планирование ответа, его написание и проверка.
-        Два этапа запускаются по необходимости. В реализованной версии на сообщение приходится
-        шесть-семь вызовов; реестры содержат 25 задач, 22 схемы Pydantic и 43 инструмента,
-        включая 10 с повышенным риском.
-  \item Объединил пять классификаторных обращений в два и убрал повторную передачу истории диалога.
-        Число вызовов сократилось с десяти-одиннадцати до шести-семи. Объём входного текста уменьшился
-        на 14\% для короткого диалога, на 38\% для типового и на 43\% для длинного.
-  \item Написал агента для чтения сайтов и отдельный рендерер на Playwright и Chromium.
-        Четыре способа получения страницы проверяются по качеству содержимого, чтобы служебная
-        страница Cloudflare не попала в контекст. Модель получает карточку из шести полей
-        с выдержкой до 1200 символов; внешнее содержимое отделено от инструкций.
-  \item Настроил сокращение контекста под бюджет промпта: сначала укорачиваются списки,
-        затем удаляются поля по 44 приоритетам. Запреты сохраняются независимо от ранжирования
-        по сообщениям собеседника.
+  \item Сократил число вызовов LLM для классификации сообщения с пяти до двух, убрав повторную передачу истории. В типовом тестовом диалоге объём входного текста уменьшился на 38\%, в коротком на 14\%, в длинном на 43\%.
+  \item Сравнил пять моделей для проверки черновиков на восьми примерах, включая пять с намеренными ошибками. Упростил JSON-схему и увеличил лимит токенов. Две модели выдали корректный JSON во всех восьми случаях, до изменений у каждой было пять из восьми.
+  \item Подключил внешних ассистентов к ReachFlow через MCP с OAuth~2.1. Проверил чтение данных в четырёх клиентах (ChatGPT, Codex, Gemini и Grok). В чат ReachFlow встроил формы выбора продукта и сегмента клиентов с проверкой на сервере.
+  \item Объединил 20 быстрых тестов схем данных и контрактов API в одну команду для Codex. С Claude добавил сверку чисел в ответах агента с перепиской и базой знаний. Если после повторной генерации число остаётся неподтверждённым, черновик получает менеджер.
 \end{itemize}
-
-\vspace{2pt}
-
-\role{Delnovo, Chief Technology Officer}{июль 2023 - май 2026}
-\begin{itemize}
-  \item Разрабатывал коммерческих ботов для поддержки клиентов и автоматизации продаж.
-        Для дистрибьютора пластиковых окон собрал RAG на PostgreSQL с векторным поиском
-        по базе знаний и интеграцией с Битрикс24. По оценке заказчика бот автоматизировал
-        около 80\% типовых консультаций.
-\end{itemize}
-\vspace{2pt}
-
-\role{NEAR AI, Solutions Engineer}{июнь 2023 - июль 2024}
-\begin{itemize}
-  \item Решал алгоритмические задачи на C++ для обучения децентрализованного ИИ.
-        Оптимизировал время и память, оценивал асимптотику и проверял код участников международной команды.
-\end{itemize}
-
-% ===== ML projects =====
-\section{ML-проекты и соревнования}
-
-\role{AIDAO 2025, финалист}{ноябрь 2025}
-Олимпиада Яндекс Образования и ФКН НИУ ВШЭ. Топ-30 команд из 248 заявок от участников из 14 стран;
-очный финал с 28 по 30 ноября, 32 часа. Задача команды беспилотных технологий Яндекса:
-построить occupancy-карту в bird's-eye view по камерам автомобиля. Метрика: IoU.
-Код: \href{https://github.com/iluuua/aidao-2025-bev-occupancy}{aidao-2025-bev-occupancy}.
-\begin{itemize}
-  \item Реализовал Lift-Splat-Shoot с нуля на PyTorch. Общий для камер ResNet-50 объединяет уровни /8 и /16
-        через FPN; depth-head оценивает 64 интервала глубины с обучаемой температурой softmax.
-        Признаки проецируются в BEV-сетку 188$\times$126, камеры объединяются через max и mean
-        с SE-блоком, декодер использует dilated residual-блоки.
-  \item Главный прирост дала покадровая калибровка. Геометрия проекции пересчитывается
-        на каждом кадре из \textit{intrinsics} и \textit{car\_to\_cam}, а сетка пикселей переносится в координаты
-        исходного изображения, потому что у четырёх камер разные разрешения.
-  \item Функция потерь: BCE с \texttt{pos\_weight} по балансу классов и $0.3\times$ дифференцируемого
-        surrogate mIoU. Обучал с AdamW, разными learning rate для backbone и голов, cosine annealing
-        и AMP; порог выбирал на валидации.
-  \item IoU на скрытом тесте: 0.5606; у победителя: 0.564. Обработка 2000 кадров занимает
-        1,7 минуты на одной GPU.
-\end{itemize}
-
-\role{Лидеры цифровой трансформации 2026, задача №5}{2026}
-Капитан команды xixi-square. Разработал алгоритм обнаружения препятствий по облакам точек
-3D-лидара Pandar128 и интеграцию с ROS 2 Humble. Геометрия тоннеля и рельсов задаёт габарит
-движения; препятствия подтверждаются по нескольким кадрам. Решение упаковано в Docker.
-На синтетике организаторов найдены все 8 препятствий; на проверенных 15,7 км реальных записей
-ложных тревог не было.
 
 \vspace{3pt}
-\textbf{Научная работа.} Написал статью по молекулярно-динамическому моделированию алюминиевой
-матрицы с включением Fe$_4$Al$_{13}$. Код и материалы:
-\href{https://github.com/iluuua/physics_md_al_fe}{physics\_md\_al\_fe}.
+\role{Delnovo \normalfont\textit{\enspace Технический директор (CTO)}}{с июля 2023 по май 2026}
+\begin{itemize}
+  \item Автоматизировал около 80\% типовых консультаций дистрибьютора окон по оценке заказчика. Для ответов бот использует RAG с векторным поиском по базе знаний в PostgreSQL.
+  \item Подключил Telegram-бота к Битрикс24 по REST API, чтобы клиенты получали уведомления о смене статуса заказа прямо в чате.
+  \item Объединил расписание, новости и отчётность в школьном Telegram-боте. Разграничил права трёх ролей (ученик, учитель и администратор).
+\end{itemize}
+\vspace{3pt}
+\role{NEAR AI \normalfont\textit{\enspace Solutions Engineer}}{с июня 2023 по июль 2024}
+\begin{itemize}
+  \item Решил на C++ 300 олимпиадных задач для обучения ИИ, в том числе 15 задач уровня Международной олимпиады по информатике (IOI). Готовил разборы в LaTeX, анализировал сложность алгоритмов и рецензировал решения участников международной команды.
+\end{itemize}
 
-% ===== Education =====
-\section{Образование и курсы}
-\textbf{Московский политехнический университет}, транспортный факультет, образовательная программа
-<<Прикладная математика и информатика>>, выпуск 2029. \textbf{НИУ ВШЭ}, факультет компьютерных наук,
-вольнослушатель курсов той же программы.
-\textbf{Образовательный центр <<Сириус>>}, профильный модуль программы <<Январская научная школа по математике
-и программированию>>, 92 академических часа, январь 2025. \textbf{Deep Learning School} ФПМИ МФТИ, 2025.
-\textbf{Т-Образование}, программа <<Т-Поколение>>, курс <<Алгоритмы>>, параллель B, 2025.
+\section{Проекты и соревнования}
+\role{Призёр хакатона «Лидеры цифровой трансформации» (ЛЦТ)}{октябрь 2026}
+\begin{itemize}
+  \item Капитан команды xixi-square. Вдвоём заняли \href{https://i.moscow/upload/lending/lct2026/edebdf.pdf\#page=5}{\underline{2-е место}} в задаче Московского метрополитена. Написали на C++ детектор препятствий по данным 3D-лидара и интегрировали его с ROS~2. \href{https://github.com/iluuua/metro-lidar-obstacle-detection}{\underline{Код на GitHub}}.
+  \item По рельсам и сечению тоннеля алгоритм восстанавливает траекторию поезда и ищет препятствия на расстоянии до 300~м. На процессоре расчёт одного кадра занимает 13,9~мс. На записях 15,4~км свободного пути ложных тревог не было.
+\end{itemize}
+
+\vspace{3pt}
+\role{AIDAO, международная олимпиада по ИИ и анализу данных}{ноябрь 2025}
+\begin{itemize}
+  \item Заняли 6-е место среди 248 команд. Реализовал с нуля \href{https://github.com/iluuua/aidao-2025-bev-occupancy}{\underline{Lift-Splat-Shoot на PyTorch}}. По изображениям с четырёх камер модель строит карту статических препятствий вокруг автомобиля в проекции сверху (bird's-eye view, BEV).
+  \item Для каждого кадра пересчитывал проекцию признаков с учётом калибровки камер. На закрытом тесте модель получила IoU~0,5606, у команды-победителя IoU~0,564.
+\end{itemize}
+
+\section{Навыки}
+\textbf{ML и NLP}\quad PyTorch, NumPy, pandas, ResNet, FPN, сегментация, RAG, эмбеддинги, pgvector, JSON Schema, вызовы инструментов (tool calling), оценка ответов LLM.\par
+\textbf{Разработка}\quad Python, C++, FastAPI, asyncio, PostgreSQL, SQL, Redis, Docker, Linux, Git, CI/CD, pytest, Playwright.\par
+\textbf{ИИ-инструменты}\quad Claude, Codex, личный аккаунт ChatGPT с подпиской Pro (\$200 в месяц).
+
+\section{Образование и исследования}
+\textbf{Московский политехнический университет}, прикладная математика и информатика, ожидаемый выпуск в 2029 году. Вольнослушатель курсов ПМИ на ФКН НИУ ВШЭ.\par
+\textbf{Курсы (2025).} Deep Learning School ФПМИ МФТИ. ОЦ «Сириус», «Январская научная школа по математике и программированию», 92~академических часа. Т-Банк, «Т-Поколение», курс «Алгоритмы», параллель B.\par
+\textbf{Научная работа.} Написал статью о напряжениях в алюминии вокруг включения Fe₄Al₁₃. \href{https://github.com/iluuua/magnetostriction-plasticity-bounds}{\underline{Код и материалы}}
 
 \end{document}

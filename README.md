@@ -9,7 +9,7 @@ Python, backend, DevOps и ML. Москва, английский C1.
 | Направление | Открыть PDF | Скачать | Исходник |
 |---|---|---|---|
 | DevOps / Platform Engineering | [DevOps CV](Mikhailovsky_Ilya_DevOps_CV_RU.pdf) | [PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Mikhailovsky_Ilya_DevOps_CV_RU.pdf) | [XeLaTeX](src/cv-devops.tex) |
-| ML Engineer, NLP / LLM | [ML CV](Mikhailovsky_Ilya_ML_NLP_CV_RU.pdf) | [PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Mikhailovsky_Ilya_ML_NLP_CV_RU.pdf) | [XeLaTeX](src/cv.tex) |
+| ML Engineer, NLP / LLM | [ML CV](Mikhailovsky_Ilya_ML_NLP_CV_RU.pdf) | [PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Ilya_Mikhailovsky_Resume.pdf) | [XeLaTeX](src/cv.tex) |
 | Python Backend | [Backend CV](Mikhailovsky_Ilya_Python_Backend_CV_RU.pdf) | [PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Mikhailovsky_Ilya_Python_Backend_CV_RU.pdf) | [XeLaTeX](src/cv-backend.tex) |
 | Data Scientist, NLP / LLM | [DS CV](Mikhailovsky_Ilya_DS_NLP_CV_RU.pdf) | [PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Mikhailovsky_Ilya_DS_NLP_CV_RU.pdf) | [XeLaTeX](src/cv-nlp.tex) |
 
@@ -49,9 +49,7 @@ Python, backend, DevOps и ML. Москва, английский C1.
 
 ### Обнаружение препятствий для Московского метрополитена
 
-[Решение команды xixi-square](https://github.com/iluuua/subway-obstacles-detection), задача №5 конкурса «Лидеры цифровой трансформации 2026».
-
-Капитан команды; отвечал за алгоритм и интеграцию с ROS 2 Humble. Детектор находит препятствия в облаках точек 3D-лидара. Последний кадр обрабатывается в отдельном процессе, чтобы при перегрузке не накапливалась очередь. Решение упаковано в Docker. На синтетике организаторов обнаружены все 8 препятствий; на проверенных 15,7 км реальных записей ложных тревог не было.
+Капитан команды xixi-square. Заняли 2-е место в задаче № 5 Московского метрополитена на ЛЦТ 2026. Разработали на C++ детектор, который восстанавливает траекторию поезда по облаку точек лидара и ищет препятствия на расстоянии до 300 м. На CPU расчёт кадра занимает 13,9 мс. На записях 15,4 км свободного пути ложных тревог не было. [Код на GitHub](https://github.com/iluuua/metro-lidar-obstacle-detection) · [Итоговый протокол](https://i.moscow/upload/lending/lct2026/edebdf.pdf#page=5)
 
 ### Финалист AIDAO 2025
 
