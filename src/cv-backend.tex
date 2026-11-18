@@ -1,142 +1,83 @@
 \documentclass[10pt,a4paper]{article}
 
-% --- XeLaTeX: fonts + Russian ---
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
-\setmainfont{PT Sans}
-\setmonofont[Scale=MatchLowercase]{PT Mono}
-\newfontfamily\cyrillicfonttt[Scale=MatchLowercase]{PT Mono}
-
-% --- layout ---
-\usepackage[a4paper,top=0.7cm,bottom=0.7cm,left=1.3cm,right=1.3cm]{geometry}
+\IfFontExistsTF{STIXTwoText-Regular.otf}{
+  \setmainfont{STIXTwoText}[
+    Extension=.otf,
+    UprightFont=*-Regular, ItalicFont=*-Italic,
+    BoldFont=*-Bold, BoldItalicFont=*-BoldItalic
+  ]
+}{\setmainfont{PT Sans}}
+\usepackage[a4paper,top=1.15cm,bottom=1.15cm,left=1.65cm,right=1.65cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={Илья Михайловский},pdftitle={Илья Михайловский | Python Backend Developer},pdflang=ru-RU}
+\urlstyle{same}
 
-\definecolor{rule}{HTML}{333333}
-
-% section headers: bold, small rule under
-\titleformat{\section}{\normalsize\bfseries}{}{0em}{\MakeUppercase}[{\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{4pt}{2.2pt}
-
-% tight bullet lists
-\setlist[itemize]{leftmargin=1.15em, labelsep=0.5em, itemsep=1.2pt, topsep=2pt, parsep=0pt, before=\vspace{1pt}}
+\titleformat{\section}{\fontsize{11.7}{13.5}\selectfont}{}{0pt}{\MakeUppercase}[\vspace{0.6pt}{\titlerule[0.45pt]}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\setlist[itemize]{leftmargin=1.65em,labelsep=0.55em,itemsep=1.2pt,topsep=1pt,parsep=0pt,partopsep=0pt}
 \renewcommand{\labelitemi}{\textbullet}
-
+\newcommand{\role}[2]{\textbf{#1}\hfill{\small #2}\par}
+\newcommand{\sep}{\enspace\textbar\enspace}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \pagestyle{empty}
-\linespread{0.96}
-\tolerance=1500
-\emergencystretch=2.5em
-
-% role line: bold title left, date right
-\newcommand{\role}[2]{\textbf{#1}\hfill #2\par}
+\raggedright
 
 \begin{document}
-
-% ===== Header =====
-\begin{center}
-  {\LARGE\bfseries Михайловский Илья Евгеньевич}\\[2pt]
-  {\large Python Backend Developer}\\[3pt]
-  Москва \textperiodcentered{} удалённо или гибрид \textperiodcentered{} английский C1, русский родной\\[2pt]
-  Telegram: \href{https://t.me/Iluuuaaa}{@Iluuuaaa} \textperiodcentered{}
-  \href{mailto:ilyamihailovsy@gmail.com}{ilyamihailovsy@gmail.com} \textperiodcentered{}
-  \href{https://github.com/iluuua}{github.com/iluuua} \textperiodcentered{}
-  +7 995 410-33-10
-\end{center}
-
-% ===== Summary =====
-\section{О себе}
-Разрабатываю backend на Python. Основал ReachFlow, спроектировал его серверную часть и довёл
-до продакшена. Работаю с FastAPI, asyncpg, PostgreSQL, фоновыми процессами и асинхронными
-интеграциями с Telegram и языковыми моделями. Сопровождаю развёртывание на Linux VPS.
-Алгоритмическая подготовка: олимпиадные задачи на C++.
-
-\section{Навыки}
-\begin{itemize}
-  \item Backend: Python, FastAPI, Pydantic, asyncio, REST API, JWT, OAuth
-  \item Данные: PostgreSQL, SQL, asyncpg, pgvector, Redis
-  \item Очереди и фоновые задачи: PostgreSQL, Redis и Dramatiq, отложенные действия и восстановление после сбоя
-  \item Инфраструктура: Linux, Docker, Docker Compose, Caddy, nginx, systemd, GitHub Actions;
-        базовое знакомство с Kubernetes (Deployment, CronJob, Secret)
-  \item Качество и наблюдаемость: pytest, unittest, Ruff, проверки здоровья сервисов,
-        структурированные логи, request-id и trace-id, OpenTelemetry
-  \item Интеграции: Telegram API, MTProto, Telethon, Google OAuth, LLM через OpenRouter
-  \item Алгоритмы: C++, алгоритмы и структуры данных
-\end{itemize}
+\fontsize{10.3}{12.2}\selectfont
+{\centering
+  {\fontsize{23}{26}\selectfont\bfseries Илья Михайловский}\par
+  \vspace{1.5pt}
+  {\large Python Backend Developer}\par
+  \vspace{2pt}
+  Москва\sep удалённо или гибрид\sep английский C1\par
+  \href{mailto:ilyamihailovsy@gmail.com}{\underline{ilyamihailovsy@gmail.com}}\sep
+  \href{https://t.me/Iluuuaaa}{\underline{Telegram @Iluuuaaa}}\sep
+  \href{https://github.com/iluuua}{\underline{github.com/iluuua}}\sep +7 995 410-33-10\par
+}
 
 \section{Опыт работы}
-\role{ReachFlow, Founder}{январь 2026 - настоящее время}
-\textit{B2B SaaS для автоматизации продаж в Telegram \textperiodcentered{} \href{https://reachflow.tech}{reachflow.tech}}
-Основатель продукта; отвечаю за backend, интеграции и эксплуатацию.
+\role{ReachFlow \normalfont\textit{Основатель и разработчик}\enspace\href{https://reachflow.tech}{\underline{reachflow.tech}}}{с января 2026}
+Сервис для отделов продаж, которые ведут переписку в Telegram.
 \begin{itemize}
-  \item Спроектировал backend на FastAPI и asyncpg с изоляцией рабочих пространств,
-        RLS-политиками PostgreSQL, JWT и Google OAuth. Подпись токенов проверяется по JWKS.
-        Реализовал инициализацию базы, миграции и проверки схемы.
-  \item Разработал фоновую обработку диалогов: группировку входящих сообщений, отложенные
-        follow-up и восстановление задач после сбоя. Работал с Redis и Dramatiq;
-        текущие API, шлюз и workers используют отдельные роли и очереди PostgreSQL.
-        Интеграция с Telegram через Telethon включает вход по MTProto, хранение и восстановление
-        сессий, MTProxy и SOCKS, лимиты отправки и обработку FloodWait.
-  \item Разработал выполнение LLM-задач через OpenRouter: реестр 25 задач и 22 схем Pydantic
-        с проверкой при импорте, профили моделей и резервные провайдеры без повторных попыток
-        с одной и той же комбинацией модели и маршрута. Каждая попытка записывается
-        с моделью, временем выполнения и стоимостью.
-  \item Вынес чтение сайтов в сервис на FastAPI, Playwright и Chromium после замера пика памяти
-        в 413 МБ при лимите 1 ГБ. Backend и рендерер независимо защищены от SSRF:
-        проверяют DNS, публичность всех адресов и каждый редирект; разрешены порты 80 и 443.
-  \item Настроил Docker Compose, Caddy/nginx, GitHub Actions с тестами и Ruff,
-        проверки здоровья до уровня схемы базы, структурированные логи и OpenTelemetry.
-        Работал с развёртыванием на Amvera и Linux VPS; для workers подготовлены примеры
-        Kubernetes-манифестов.
-  \item Сопровождаю автоматический деплой через GitHub webhooks и systemd.
-        До миграций выполняются резервное копирование и восстановление на тестовой базе;
-        после релиза проверяются версия образа и здоровье сервисов, при сбое предусмотрен откат.
+  \item Спроектировал backend на FastAPI и asyncpg. Изолировал данные клиентов политиками доступа PostgreSQL (RLS), подключил вход через Google OAuth и проверку подписи JWT по JWKS.
+  \item Настроил очереди PostgreSQL для входящих сообщений и отложенных ответов. После сбоя обработка возобновляется. В интеграции с Telegram через Telethon предусмотрел восстановление сессий и обработку ограничений частоты отправки.
+  \item Для 25 LLM-задач подключил OpenRouter и 22 схемы Pydantic. Сервис проверяет ответы, переключается на резервную модель при сбое и записывает время и стоимость каждой попытки.
+  \item Вынес чтение сайтов в отдельный сервис на FastAPI и Playwright после того, как Chromium занял 413 МБ при лимите 1 ГБ. Для защиты от SSRF сервис проверяет адрес назначения при каждом перенаправлении.
+  \item Автоматизировал выпуск обновлений через GitHub webhooks и systemd. Перед миграцией проверяю восстановление резервной копии PostgreSQL. После запуска проверяется версия приложения и доступность сервисов.
 \end{itemize}
-\vspace{3pt}
 
-\role{Delnovo, Chief Technology Officer}{июль 2023 - май 2026}
+\vspace{3pt}
+\role{Delnovo \normalfont\textit{Технический директор (CTO)}}{с июля 2023 по май 2026}
 \begin{itemize}
-  \item Разрабатывал коммерческих ботов для поддержки и продаж. Для дистрибьютора пластиковых окон
-        реализовал асинхронного бота на Aiogram, интеграцию с Битрикс24 по REST API,
-        RAG на PostgreSQL и уведомления о статусе заказа. По оценке заказчика бот автоматизировал
-        около 80\% типовых консультаций.
-  \item Разработал Telegram-бота для школы (\texttt{@shkolo\_teacher\_bot}): роли ученика,
-        учителя и администратора, расписание, новости и отчётность. Настроил запуск в Docker.
+  \item Разработал на Aiogram бота для дистрибьютора окон. Подключил поиск по базе знаний в PostgreSQL и уведомления о статусе заказа из Битрикс24. По оценке заказчика, бот автоматизировал около 80\% типовых консультаций.
+  \item Разработал для клиента API, через который ИИ-агенты ищут и читают страницы каталога. Описал API в OpenAPI, настроил доступ по OAuth и сборку 89 страниц в Markdown для агентов и в HTML с разметкой JSON-LD для поисковиков.
 \end{itemize}
-\vspace{3pt}
 
-\role{NEAR AI, Solutions Engineer}{июнь 2023 - июль 2024}
+\vspace{3pt}
+\role{NEAR AI \normalfont\textit{Solutions Engineer}}{с июня 2023 по июль 2024}
 \begin{itemize}
-  \item Решал алгоритмические задачи на C++ для обучения децентрализованного ИИ:
-        оптимизировал время и память, оценивал асимптотику и улучшал структуру кода.
-  \item Оформлял решения в LaTeX и проверял код участников международной команды.
+  \item Решил 300 алгоритмических задач на C++ для обучения ИИ, в том числе 15 уровня IOI. Анализировал сложность решений, готовил разборы в LaTeX и проверял код международной команды.
 \end{itemize}
 
 \section{Проекты}
-\role{Лидеры цифровой трансформации 2026, задача №5}{2026}
-Капитан команды xixi-square. Разработал алгоритм обнаружения препятствий по облакам точек
-3D-лидара Pandar128 и интеграцию с ROS 2 Humble. Отдельный процесс обрабатывает последний
-кадр и пропускает устаревшие при перегрузке. Решение упаковано в Docker.
-На синтетике организаторов найдены все 8 препятствий; на проверенных 15,7 км реальных записей
-ложных тревог не было.
+\role{Детектор препятствий для поезда метро}{октябрь 2026}
+Капитан команды xixi-square. Вдвоём заняли 2-е место в задаче Московского метрополитена на ЛЦТ. Написал алгоритм обработки облаков точек и интегрировал его с ROS~2. Расчёт вынес в отдельный процесс. При перегрузке он обрабатывает последний полученный кадр. Решение запускается в Docker. \href{https://github.com/iluuua/metro-lidar-obstacle-detection}{\underline{Код и демонстрация}}
 
-\vspace{3pt}
-\textbf{Научная работа.} Написал статью по молекулярно-динамическому моделированию алюминиевой
-матрицы с включением Fe$_4$Al$_{13}$. Код и материалы:
-\href{https://github.com/iluuua/physics_md_al_fe}{physics\_md\_al\_fe}.
+\section{Навыки}
+\textbf{Backend}\quad Python, FastAPI, Pydantic, asyncio, REST API, OAuth, JWT, Telethon, MTProto.\par
+\textbf{Данные и очереди}\quad PostgreSQL, SQL, asyncpg, pgvector, Redis, Dramatiq.\par
+\textbf{Эксплуатация}\quad Linux, Docker Compose, Caddy, nginx, systemd, GitHub Actions, pytest, Ruff, OpenTelemetry.\par
 
-\section{Образование}
-\textbf{Московский политехнический университет}, транспортный факультет, программа
-<<Прикладная математика и информатика>>, выпуск 2029. \textbf{НИУ ВШЭ, ФКН},
-вольнослушатель курсов той же программы.
-\textbf{ОЦ <<Сириус>>}, <<Январская научная школа по математике и программированию>>,
-92 академических часа, январь 2025. \textbf{Deep Learning School} ФПМИ МФТИ, 2025.
-\textbf{Т-Образование}, <<Т-Поколение>>, курс <<Алгоритмы>>, параллель B, 2025.
-
+\section{Образование и исследования}
+\textbf{Московский политехнический университет}, прикладная математика и информатика, ожидаемый выпуск в 2029 году. Вольнослушатель курсов ПМИ на ФКН НИУ ВШЭ.\par
+\textbf{Курсы (2025).} Deep Learning School ФПМИ МФТИ. ОЦ «Сириус», «Январская научная школа по математике и программированию», 92~академических часа. Т-Банк, «Т-Поколение», курс «Алгоритмы», параллель B.\par
+\textbf{Научная работа.} Написал статью о напряжениях в алюминии вокруг включения Fe₄Al₁₃. \href{https://github.com/iluuua/magnetostriction-plasticity-bounds}{\underline{Код и материалы}}
 
 \end{document}
