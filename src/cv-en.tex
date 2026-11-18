@@ -1,0 +1,92 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\IfFontExistsTF{STIXTwoText-Regular.otf}{
+  \setmainfont{STIXTwoText}[
+    Extension=.otf,
+    UprightFont=*-Regular, ItalicFont=*-Italic,
+    BoldFont=*-Bold, BoldItalicFont=*-BoldItalic
+  ]
+}{\setmainfont{PT Sans}}
+\usepackage[a4paper,top=1.15cm,bottom=1.15cm,left=1.65cm,right=1.65cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdfauthor={Ilya Mikhailovsky},pdftitle={Ilya Mikhailovsky | Machine Learning Engineer | NLP and LLMs},pdflang=en-US}
+\urlstyle{same}
+
+\titleformat{\section}{\fontsize{11.7}{13.5}\selectfont}{}{0pt}{\MakeUppercase}[\vspace{0.6pt}{\titlerule[0.45pt]}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\setlist[itemize]{leftmargin=1.65em,labelsep=0.55em,itemsep=1.2pt,topsep=1pt,parsep=0pt,partopsep=0pt}
+\renewcommand{\labelitemi}{\textbullet}
+\newcommand{\role}[2]{\textbf{#1}\hfill{\small #2}\par}
+\newcommand{\sep}{\enspace\textbar\enspace}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+\raggedright
+
+\begin{document}
+\fontsize{10.3}{12.2}\selectfont
+{\centering
+  {\fontsize{23}{26}\selectfont\bfseries Ilya Mikhailovsky}\par
+  \vspace{1.5pt}
+  {\large Machine Learning Engineer | NLP and LLMs}\par
+  \vspace{2pt}
+  Moscow\sep On-site, hybrid or remote\sep English (C1)\par
+  \href{mailto:ilyamihailovsy@gmail.com}{\underline{ilyamihailovsy@gmail.com}}\sep
+  \href{https://t.me/Iluuuaaa}{\underline{Telegram @Iluuuaaa}}\sep
+  \href{https://github.com/iluuua}{\underline{github.com/iluuua}}\par
+}
+
+\section{Experience}
+\role{ReachFlow \normalfont\enspace\textit{Founder and Developer}\enspace\href{https://reachflow.tech}{\underline{reachflow.tech}}}{Jan 2026 to present}
+Software for sales teams that work with customers on Telegram.
+\begin{itemize}
+  \item Built an LLM agent that plans replies and checks them against the conversation history. Cut classifier calls from five to two, reducing input text by 38\% in a representative test conversation.
+  \item Built a prospecting tool that uses breadth-first search to find Telegram communities and an LLM to identify relevant messages. It adds qualified contacts and deals to the CRM without creating duplicates.
+  \item Evaluated four LLMs on the same 35 real message drafts. Measured cost per call and checked whether each model preserved the approved wording when splitting a draft into shorter messages.
+  \item Built a service that routes requests through OpenRouter by task, switches to a backup model on failure, validates responses with Pydantic and tracks the cost of each call.
+\end{itemize}
+
+\vspace{3pt}
+\role{Delnovo \normalfont\enspace\textit{Chief Technology Officer}}{Jul 2023 to May 2026}
+\begin{itemize}
+  \item Built a support bot for a window distributor using retrieval-augmented generation and vector search over its PostgreSQL knowledge base. The client estimated that the bot handled about 80\% of routine inquiries.
+  \item Connected a Telegram bot to the Bitrix24 REST API so customers could receive order status updates in chat.
+  \item Built an OAuth-protected API for AI agents to search and read a client's catalog. Documented it with OpenAPI and automated publishing for 89 pages in Markdown for agents and HTML with JSON-LD for search engines.
+\end{itemize}
+
+\vspace{3pt}
+\role{NEAR AI \normalfont\enspace\textit{Solutions Engineer}}{Jun 2023 to Jul 2024}
+\begin{itemize}
+  \item Solved 300 competitive programming problems in C++ for AI training, including 15 at International Olympiad in Informatics (IOI) level. Wrote editorials in LaTeX, analyzed algorithm complexity and reviewed solutions from teammates in other countries.
+\end{itemize}
+
+\section{Projects and competitions}
+\role{Leaders of Digital Transformation Hackathon \normalfont\enspace\textit{Moscow Metro challenge}}{Oct 2026}
+\begin{itemize}
+  \item Led xixi-square, a two-person team that placed \href{https://i.moscow/upload/lending/lct2026/edebdf.pdf\#page=5}{\underline{second}}. We built a C++ obstacle detector for 3D lidar and integrated it with ROS~2. \href{https://github.com/iluuua/metro-lidar-obstacle-detection}{\underline{Code and demo}}
+  \item Used the rails and tunnel cross section to estimate the train's path and check for obstacles up to 300~m ahead. The detector averaged 13.9~ms per frame on CPU and recorded zero false alarms over 15.4~km of clear track.
+\end{itemize}
+
+\vspace{3pt}
+\role{Artificial Intelligence and Data Analysis Olympiad (AIDAO)}{Nov 2025}
+\begin{itemize}
+  \item Placed sixth out of 248 teams. Implemented \href{https://github.com/iluuua/aidao-2025-bev-occupancy}{\underline{Lift-Splat-Shoot in PyTorch}} from scratch to map static obstacles around a vehicle in bird's-eye view using images from four cameras.
+  \item Recomputed the feature projection for each frame using camera calibration. Scored 0.5606 IoU on the private test set, compared with the winning team's 0.564.
+\end{itemize}
+
+\section{Skills}
+\textbf{ML and NLP}\quad PyTorch, NumPy, pandas, ResNet, FPN, segmentation, RAG, embeddings, pgvector, JSON Schema, tool calling, LLM evaluation.\par
+\textbf{Engineering}\quad Python, C++, FastAPI, asyncio, PostgreSQL, SQL, Redis, Docker, Linux, Git, CI/CD, pytest, Playwright.\par
+\textbf{AI tools}\quad Claude, Codex, personal ChatGPT Pro subscription (\$200/month).
+
+\section{Education and research}
+\textbf{Moscow Polytechnic University}, Applied Mathematics and Computer Science, expected 2029. Auditing courses at HSE University's Faculty of Computer Science.\par
+\textbf{Coursework (2025).} Deep Learning School at MIPT. January School in Mathematics and Programming at Sirius (92 academic hours). Algorithms, Track B, T-Bank's T-Generation program.\par
+\textbf{Research.} Wrote a paper on stresses in aluminum around an Fe₄Al₁₃ inclusion. \href{https://github.com/iluuua/magnetostriction-plasticity-bounds}{\underline{Code and materials}}
+
+\end{document}

@@ -9,6 +9,7 @@
 | Направление | Резюме | Исходник |
 | --- | --- | --- |
 | ML Engineer · NLP и LLM | [Скачать PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Ilya_Mikhailovsky_Resume.pdf) | [XeLaTeX](src/cv.tex) |
+| ML Engineer · English | [Download PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Ilya_Mikhailovsky_Resume_EN.pdf) | [XeLaTeX](src/cv-en.tex) |
 | Python Backend Developer | [Скачать PDF](https://github.com/iluuua/cv/raw/refs/heads/main/Mikhailovsky_Ilya_Python_Backend_CV_RU.pdf) | [XeLaTeX](src/cv-backend.tex) |
 
 ## Опыт
@@ -31,4 +32,4 @@
 
 ## Сборка
 
-Команда `make` собирает оба резюме из исходников в `src/`. Нужен XeLaTeX со шрифтом STIX Two Text или PT Sans.
+Команда `make` собирает все версии резюме из исходников в `src/`. Нужен XeLaTeX со шрифтом STIX Two Text или PT Sans.
